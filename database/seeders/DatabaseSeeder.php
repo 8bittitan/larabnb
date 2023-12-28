@@ -3,6 +3,10 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Listing;
+use App\Models\ListingImage;
+use App\Models\ListingRoom;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,11 +16,23 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        $user = User::factory()->create([
+            'name' => 'Paul Jankowski',
+            'email' => 'PJankowski25@gmail.com',
+        ]);
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        Listing::factory()
+            ->count(3)
+            ->has(ListingImage::factory()
+                ->count(5),
+                'images'
+            )
+            ->has(ListingRoom::factory()
+                ->count(4),
+                'rooms'
+            )
+            ->create([
+                'user_id' => $user->id,
+            ]);
     }
 }
