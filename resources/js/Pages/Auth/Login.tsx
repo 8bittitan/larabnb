@@ -3,7 +3,7 @@ import Checkbox from "@/Components/Checkbox";
 import FocusLayout from "@/Layouts/FocusLayout";
 import InputError from "@/Components/InputError";
 import InputLabel from "@/Components/InputLabel";
-import PrimaryButton from "@/Components/PrimaryButton";
+import { Button } from "@/Components/ui/button";
 import TextInput from "@/Components/TextInput";
 import { Head, Link, useForm } from "@inertiajs/react";
 
@@ -101,9 +101,13 @@ export default function Login({
                         </Link>
                     )}
 
-                    <PrimaryButton className="ms-4" disabled={processing}>
+                    <Button
+                        className="ms-4"
+                        disabled={processing}
+                        variant="secondary"
+                    >
                         Log in
-                    </PrimaryButton>
+                    </Button>
                 </div>
             </form>
         </FocusLayout>
